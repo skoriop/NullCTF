@@ -5,13 +5,13 @@ WORKDIR /usr/src/app
 
 RUN apk add gcc python3-dev musl-dev
 
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
 COPY nullctf.py .
 COPY cogs .
 COPY help_info.py .
 COPY magic.json .
 COPY config_vars.py .
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt
 
 CMD ["python", "nullctf.py"]
