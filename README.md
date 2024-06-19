@@ -2,10 +2,25 @@
 
 >### *A [discord.py](http://discordpy.readthedocs.io/en/latest/) bot focused on providing CTF tools for collaboration in Discord servers (ctftime.org commands, team setup + ctfd integration, utilites, etc)!  If you have a feature request, make it a GitHub issue or use the >request "x" command.*
 
-[Invite to your server](https://discord.com/api/oauth2/authorize?client_id=982358072611721246&permissions=268561520&scope=bot)
-## Please let me know if there's any issues with the link! This is one of multiple alternate instances because the original is over the 100 server limit Discord imposes for non-verified bots ([verification requirements](https://support.discordapp.com/hc/en-us/articles/360040720412-Bot-Verification-and-Data-Whitelisting))
-\
-[Join the support server](https://discord.gg/yf8E2s8)
+# Note
+
+This is a fork of the original [NullCTF bot](https://github.com/NullPxl/NullCTF) for personal use.
+
+To host, make sure you have [Docker](https://www.docker.com/) installed and build the image in the root folder before running it:
+
+```sh
+docker build -t nullctf-bot .
+docker run -d -it --net host --name nullctf-bot-container nullctf-bot
+```
+
+### TODO:
+
+- [ ] Migrate from `config_vars.py` to a `.env` file
+- [ ] Keep MongoDB instance in a local container and wrap both using Docker Compose
+- [x] Show CTF weight
+- [ ] Add filter to show only rated CTFs
+- [ ] Improve `>ctftime countdown/timeleft` UX
+- [ ] Add command to get team info
 
 #  How to Use
 *If you ever forget a command, use `>help`!*
@@ -124,5 +139,4 @@ ctfs = ctfdb['ctfs'] # Create ctfs collection
 teamdb = client['ctfteams'] # Create ctf teams database
 
 serverdb = client['serverinfo'] # configuration db
-```
 ```
