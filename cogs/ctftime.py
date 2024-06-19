@@ -48,6 +48,7 @@ class CtfTime(commands.Cog):
             (ctf_hours, ctf_days) = (str(dur_dict['hours']), str(dur_dict['days']))
             ctf_link = jdata[num]['url']
             ctf_image = jdata[num]['logo']
+            ctf_weight = jdata[num]['weight']
             ctf_format = jdata[num]['format']
             ctf_place = jdata[num]['onsite']
             if ctf_place == False:
@@ -62,6 +63,7 @@ class CtfTime(commands.Cog):
                 'dur': ctf_days+' days, '+ctf_hours+' hours',
                 'url': ctf_link,
                 'img': ctf_image,
+                'weight': ctf_weight,
                 'format': ctf_place+' '+ctf_format
                  }
             info.append(ctf)
@@ -114,6 +116,7 @@ class CtfTime(commands.Cog):
                 embed.add_field(name='Duration', value=ctf['dur'], inline=True)
                 embed.add_field(name='Format', value=ctf['format'], inline=True)
                 embed.add_field(name='Timeframe', value=start+' -> '+end, inline=True)
+                embed.add_field(name='Weight', value=str(ctf['weight']), inline=True)
                 await ctx.channel.send(embed=embed)
         
         if running == False: # No ctfs were found to be running
@@ -143,6 +146,7 @@ class CtfTime(commands.Cog):
             (ctf_hours, ctf_days) = (str(dur_dict["hours"]), str(dur_dict["days"]))
             ctf_link = upcoming_data[ctf]["url"]
             ctf_image = upcoming_data[ctf]["logo"]
+            ctf_weight = upcoming_data[ctf]["weight"]
             ctf_format = upcoming_data[ctf]["format"]
             ctf_place = upcoming_data[ctf]["onsite"]
             if ctf_place == False:
@@ -158,6 +162,7 @@ class CtfTime(commands.Cog):
 
             embed.add_field(name="Duration", value=((ctf_days + " days, ") + ctf_hours) + " hours", inline=True)
             embed.add_field(name="Format", value=(ctf_place + " ") + ctf_format, inline=True)
+            embed.add_field(name='Weight', value=str(ctf_weight), inline=True)
             embed.add_field(name="Timeframe", value=(ctf_start + " -> ") + ctf_end, inline=True)
             await ctx.channel.send(embed=embed)
     
