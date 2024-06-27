@@ -3,9 +3,11 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 import sys
+from dotenv import load_dotenv
 
 import help_info
-import config_vars
+
+load_dotenv()
 
 client = discord.Client()
 bot = commands.Bot(command_prefix=">", allowed_mentions = discord.AllowedMentions(everyone = False, users=False, roles=False))
@@ -107,4 +109,4 @@ if __name__ == '__main__':
             bot.load_extension(extension)
         except Exception as e:
             print(f'Failed to load cogs : {e}')
-    bot.run(config_vars.discord_token)
+    bot.run(os.getenv("DISCORD_TOKEN"))

@@ -7,7 +7,7 @@ import requests
 from colorama import Fore, Style
 import sys
 sys.path.append("..")
-from config_vars import *
+from db import *
 
 # All commands for getting data from ctftime.org (a popular platform for finding CTF events)
 

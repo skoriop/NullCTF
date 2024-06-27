@@ -15,7 +15,7 @@ docker run -d -it --net host --name nullctf-bot-container nullctf-bot
 
 ### TODO:
 
-- [ ] Migrate from `config_vars.py` to a `.env` file
+- [x] Migrate from `config_vars.py` to a `.env` file
 - [ ] Keep MongoDB instance in a local container and wrap both using Docker Compose
 - [x] Show CTF weight
 - [ ] Add filter to show only rated CTFs

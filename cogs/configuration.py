@@ -2,7 +2,7 @@ import discord
 from discord.ext import tasks, commands
 import sys
 sys.path.append("..")
-from config_vars import *
+from db import *
 
 # Extension for per-discord-server configuration.
 # Configurations are logged in the database under the server id (right click on your server icon in discord dev mode).

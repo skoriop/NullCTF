@@ -6,7 +6,7 @@ import requests
 import sys
 import traceback
 sys.path.append("..")
-from config_vars import *
+from db import *
 
 # All commands relating to server specific CTF data
 # Credentials provided for pulling challenges from the CTFd platform are NOT stored in the database.

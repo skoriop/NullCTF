@@ -12,6 +12,7 @@ COPY nullctf.py .
 COPY cogs .
 COPY help_info.py .
 COPY magic.json .
-COPY config_vars.py .
+COPY db.py .
+COPY .env .
 
 CMD ["python", "nullctf.py"]
