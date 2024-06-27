@@ -6,17 +6,18 @@
 
 This is a fork of the original [NullCTF bot](https://github.com/NullPxl/NullCTF) for personal use.
 
-To host, make sure you have [Docker](https://www.docker.com/) installed and build the image in the root folder before running it:
+To host, make sure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed. Create a `.env` file with the same format as `.env.example`.
+
+To get the bot token, you'll need to create a Discord bot on Discord's developer portal. Then, get the invite link of the bot by going to the bot settings page.
 
 ```sh
-docker build -t nullctf-bot .
-docker run -d -it --net host --name nullctf-bot-container nullctf-bot
+docker compose up --build -d
 ```
 
 ### TODO:
 
 - [x] Migrate from `config_vars.py` to a `.env` file
-- [ ] Keep MongoDB instance in a local container and wrap both using Docker Compose
+- [x] Keep MongoDB instance in a local container and wrap both using Docker Compose
 - [x] Show CTF weight
 - [ ] Add filter to show only rated CTFs
 - [ ] Improve `>ctftime countdown/timeleft` UX
@@ -114,29 +115,3 @@ The following commands are the ones you will most likely want to pay attention t
 * `>request/report "a feature"/"a bug"` Dm's the creator (nullpxl#3928) with your feature/bug  request/report.
 
 ## Have a feature request?  Make a GitHub issue or use the >request command.
-
-# Setup - General Overview
----
-* This may be necessary in the future because of Disord's recent [verification requirements](https://support.discordapp.com/hc/en-us/articles/360040720412-Bot-Verification-and-Data-Whitelisting) for bots in over 100 servers (which this bot is already over).  This rule, which will disallow users to invite bots that have not been verified by the owner (which requires photoid) will be enforced starting october 7th. 
-```
-Create a discord bot on discord's developer portal -> get the bot token -> clone this repo ->
-Create mongodb account -> create project -> create cluster -> create db user -> 
-add your ip to db whitelist access -> connect to cluster and select python as driver ->
-get connection string and follow mongodb's steps with your password ->  use the below template for creating dbs and collections under the file config_vars.py -> build with docker (`docker build`). You may have to set pymongo==3.10.1 or similar in requirements.txt -> invite the bot to your server (go to the bot settings page on discord developer portal)
-```
-```
-# config_vars.py
-from pymongo import MongoClient
-
-discord_token = ""
-mongodb_connection = ""
-
-client = MongoClient(mongodb_connection)
-
-ctfdb = client['ctftime'] # Create ctftime database
-ctfs = ctfdb['ctfs'] # Create ctfs collection
-
-teamdb = client['ctfteams'] # Create ctf teams database
-
-serverdb = client['serverinfo'] # configuration db
-```
