@@ -135,7 +135,7 @@ class CTF(commands.Cog):
         server = teamdb[str(ctx.guild.id)]
         await ctx.guild.create_role(name=ctf_name, mentionable=True)         
         ctf_info = {'name': ctf_name, "text_channel": ctf_name}
-        server.update({'name': ctf_name}, {"$set": ctf_info}, upsert=True)
+        server.update_one({'name': ctf_name}, {"$set": ctf_info}, upsert=True)
         # Give a visual confirmation of completion.
         await ctx.message.add_reaction("✅")
     
@@ -151,7 +151,7 @@ class CTF(commands.Cog):
             await ctx.send(f"`{role.name}` role deleted")
         except: # role most likely already deleted with archive
             pass
-        teamdb[str(ctx.guild.id)].remove({'name': str(ctx.message.channel)})
+        teamdb[str(ctx.guild.id)].delete_many({'name': str(ctx.message.channel)})
         await ctx.send(f"`{str(ctx.message.channel)}` deleted from db")
     
     @commands.bot_has_permissions(manage_channels=True, manage_roles=True)

@@ -79,7 +79,7 @@ class CtfTime(commands.Cog):
         
         for ctf in ctfs.find(): # Delete ctfs that are over from the db
             if ctf['end'] < unix_now:
-                ctfs.remove({'name': ctf['name']})
+                ctfs.delete_many({'name': ctf['name']})
 
     @updateDB.before_loop
     async def before_updateDB(self):
